@@ -6,6 +6,7 @@ export const appTheme = createTheme({
     primary: {
       main: '#2F5AF3',
       dark: '#133C95',
+      light: '#638DFD',
     },
     secondary: {
       main: '#4C6FFF',
@@ -27,10 +28,15 @@ export const appTheme = createTheme({
     h3: {
       fontSize: '2.25rem',
       letterSpacing: '-0.02em',
+      fontWeight: 700,
     },
     h4: {
       fontSize: '1.75rem',
       letterSpacing: '-0.01em',
+      fontWeight: 700,
+    },
+    h6: {
+      fontWeight: 600,
     },
   },
   components: {
@@ -41,6 +47,7 @@ export const appTheme = createTheme({
           fontWeight: 600,
           borderRadius: 10,
           minHeight: 44,
+          paddingInline: 20,
         },
       },
     },
@@ -49,6 +56,13 @@ export const appTheme = createTheme({
         root: {
           borderRadius: 10,
           backgroundColor: '#FFFFFF',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        rounded: {
+          borderRadius: 12,
         },
       },
     },

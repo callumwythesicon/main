@@ -36,14 +36,22 @@ function App() {
   }
 
   return (
-    <Box sx={{ minHeight: '100vh', display: 'flex' }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+      }}
+    >
+      {/* Left panel: Project Intacct branding (Figma frame 3897-4577) */}
       <Box
         sx={{
           position: 'relative',
           display: { xs: 'none', md: 'flex' },
           flexDirection: 'column',
           justifyContent: 'center',
-          width: '100%',
+          flex: 1,
+          minWidth: 0,
           px: { md: 8, lg: 12 },
           py: 8,
           background:
@@ -74,9 +82,15 @@ function App() {
             bgcolor: 'rgba(255,255,255,0.12)',
           }}
         />
-        <Stack spacing={5} sx={{ position: 'relative', maxWidth: 520 }}>
+        <Stack spacing={5} sx={{ position: 'relative', zIndex: 1, maxWidth: 520 }}>
           <Stack direction="row" spacing={2} alignItems="center">
-            <Avatar sx={{ bgcolor: 'rgba(255,255,255,0.2)', width: 44, height: 44 }}>
+            <Avatar
+              sx={{
+                bgcolor: 'rgba(255,255,255,0.2)',
+                width: 44,
+                height: 44,
+              }}
+            >
               <BusinessRoundedIcon />
             </Avatar>
             <Typography variant="h6" fontWeight={700}>
@@ -84,7 +98,7 @@ function App() {
             </Typography>
           </Stack>
           <Stack spacing={2}>
-            <Typography variant="h3" lineHeight={1.15} fontWeight={700}>
+            <Typography variant="h3" lineHeight={1.15}>
               Welcome to your next ERP workspace.
             </Typography>
             <Typography variant="h6" sx={{ opacity: 0.9, fontWeight: 400 }}>
@@ -93,8 +107,13 @@ function App() {
           </Stack>
           <Stack spacing={2}>
             {featurePoints.map((point) => (
-              <Stack key={point} direction="row" spacing={1.5} alignItems="center">
-                <CheckCircleRoundedIcon sx={{ fontSize: 20 }} />
+              <Stack
+                key={point}
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
+              >
+                <CheckCircleRoundedIcon sx={{ fontSize: 20, flexShrink: 0 }} />
                 <Typography variant="body1" sx={{ opacity: 0.95 }}>
                   {point}
                 </Typography>
@@ -104,9 +123,11 @@ function App() {
         </Stack>
       </Box>
 
+      {/* Right panel: Sign-in form */}
       <Box
         sx={{
           width: { xs: '100%', md: 520 },
+          flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -123,7 +144,7 @@ function App() {
             width: '100%',
             maxWidth: 420,
             p: { xs: 3, sm: 4 },
-            borderRadius: 4,
+            borderRadius: 3,
             border: '1px solid',
             borderColor: 'divider',
             bgcolor: 'background.paper',
@@ -131,7 +152,7 @@ function App() {
         >
           <Stack spacing={3}>
             <Stack spacing={1} textAlign="left">
-              <Typography variant="h4" component="h1" fontWeight={700}>
+              <Typography variant="h4" component="h1">
                 Sign in
               </Typography>
               <Typography variant="body1" color="text.secondary">
@@ -143,6 +164,7 @@ function App() {
               <Stack spacing={2.25}>
                 <TextField
                   required
+                  fullWidth
                   label="Work email"
                   name="email"
                   autoComplete="email"
@@ -156,6 +178,7 @@ function App() {
                 />
                 <TextField
                   required
+                  fullWidth
                   label="Password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
@@ -169,8 +192,12 @@ function App() {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
-                          aria-label={showPassword ? 'Hide password' : 'Show password'}
-                          onClick={() => setShowPassword((current) => !current)}
+                          aria-label={
+                            showPassword ? 'Hide password' : 'Show password'
+                          }
+                          onClick={() =>
+                            setShowPassword((current) => !current)
+                          }
                           edge="end"
                         >
                           {showPassword ? (
@@ -199,7 +226,13 @@ function App() {
                   </Link>
                 </Stack>
 
-                <Button type="submit" variant="contained" size="large" fullWidth>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  fullWidth
+                  disableElevation
+                >
                   Sign in to dashboard
                 </Button>
                 <Button
